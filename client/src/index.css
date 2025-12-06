@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-success: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --gradient-mesh: radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%),
+                   radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%),
+                   radial-gradient(at 0% 50%, hsla(355,100%,93%,1) 0px, transparent 50%),
+                   radial-gradient(at 80% 50%, hsla(340,100%,76%,1) 0px, transparent 50%),
+                   radial-gradient(at 0% 100%, hsla(22,100%,77%,1) 0px, transparent 50%),
+                   radial-gradient(at 80% 100%, hsla(242,100%,70%,1) 0px, transparent 50%),
+                   radial-gradient(at 0% 0%, hsla(343,100%,76%,1) 0px, transparent 50%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  @apply bg-dark-950 text-dark-100 antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark-600;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Gradient Background */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+/* Premium Button Styles */
+.btn-primary {
+  @apply relative px-8 py-3 font-semibold text-white rounded-lg overflow-hidden transition-all duration-300;
+  background: var(--gradient-primary);
+}
+
+.btn-primary:hover {
+  @apply shadow-lg transform scale-105;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+  @apply transform scale-95;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply transform -translate-y-2 shadow-2xl;
+}
+
+/* Gradient Border */
+.gradient-border {
+  position: relative;
+  background: transparent;
+  border-radius: 12px;
+  padding: 2px;
+  background: var(--gradient-primary);
+}
+
+.gradient-border > * {
+  @apply rounded-lg bg-dark-900;
+}
+
+/* Theme: Non-Gradient Mode */
+body.theme-simple {
+  --gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  --gradient-secondary: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+body.theme-simple .gradient-bg {
+  background: #0ea5e9;
+  animation: none;
+}
+
+body.theme-simple .btn-primary {
+  background: #0ea5e9;
+}
+
+body.theme-simple .btn-primary:hover {
+  background: #0284c7;
+}
+
+/* Leaflet Map Overrides */
+.leaflet-container {
+  @apply rounded-xl overflow-hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply glass rounded-lg;
+}
+
+/* Loading Spinner */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #0ea5e9;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Text Selection */
+::selection {
+  @apply bg-primary-500/30 text-white;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-dark-900;
+}
+
+/* Premium Input Styles */
+input, textarea, select {
+  @apply w-full px-4 py-3 rounded-lg bg-dark-800/50 border border-dark-700 text-dark-100;
+  @apply focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all;
+}
+
+input::placeholder, textarea::placeholder {
+  @apply text-dark-500;
+}
+
+/* Premium Link Styles */
+a {
+  @apply transition-colors duration-200;
+}
+
+/* Layout Helpers */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-padding {
+  @apply py-16 lg:py-24;
+}
+
+/* Responsive Typography */
+h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold font-display;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold font-display;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl font-bold font-display;
+}
+
+h4 {
+  @apply text-xl md:text-2xl font-semibold font-display;
+}
+
+p {
+  @apply text-base md:text-lg text-dark-300;
+}
+
+/* Hide elements for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
