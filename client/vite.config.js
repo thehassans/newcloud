@@ -24,10 +24,19 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          maps: ['leaflet', 'react-leaflet'],
-          utils: ['axios', 'i18next', 'react-i18next'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-framer';
+            }
+            if (id.includes('leaflet')) {
+              return 'vendor-leaflet';
+            }
+            return 'vendor';
+          }
         },
       },
     },
